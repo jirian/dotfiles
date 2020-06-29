@@ -1,3 +1,6 @@
-setxkbmap cz -option caps:escape_shifted_capslock
+#!/bin/sh
+
+xrdb .Xresources
+remaps &
 
 exec xmonad

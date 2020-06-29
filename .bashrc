@@ -41,8 +41,6 @@ NC='\[\e[m\]'			# Color Reset
 ALERT="${BWhite}${On_Red}" # Bold White on red background
 
 # Useful aliases
-alias c='clear'
-alias ..='cd ..'
 alias ls='ls -CF --color=auto'
 alias ll='s -lisa --color=auto'
 alias mkdir='mkdir -pv'
@@ -51,9 +49,9 @@ alias ps='ps auxf'
 alias psgrep='ps aux | grep -v grep | grep -i -e VSZ -e'
 alias wget='wget -c'
 alias histg='history | grep'
-alias myip='curl ipv4.icanhazip.com'
 alias grep='grep --color=auto'
 alias cfg="git --git-dir=$HOME/.cfgit/ --work-tree=$HOME"
+alias vim="nvim"
 
 # Set PATH so it includes user's private bin directories
 PATH="${HOME}/bin:${HOME}/.local/bin:${PATH}"

@@ -50,7 +50,7 @@ alias psgrep='ps aux | grep -v grep | grep -i -e VSZ -e'
 alias wget='wget -c'
 alias histg='history | grep'
 alias grep='grep --color=auto'
-alias cfg="git --git-dir=$HOME/.cfgit/ --work-tree=$HOME"
+alias cfg="git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 alias vim="nvim"
 
 # Set PATH so it includes user's private bin directories

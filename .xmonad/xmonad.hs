@@ -9,7 +9,8 @@ import qualified XMonad.StackSet as W
 
 -- Hooks
 import XMonad.Hooks.SetWMName
-import qualified XMonad.Hooks.ManageDocks as Docks
+import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.EwmhDesktops
 
 -- Layout
 import XMonad.Layout.LayoutModifier
@@ -41,8 +42,8 @@ defaultKeyBindings conf@(XConfig {XMonad.modMask = modm}) = Map.fromList $
     -- Launch terminal
     [ ((modm, xK_Return), spawn $ XMonad.terminal conf)
 
-    -- Launch dmenu
-    , ((modm, xK_p), spawn "dmenu_run")
+    -- Launch rofi
+    , ((modm, xK_p), spawn "rofi -show run")
 
     -- Close focused window
     , ((modm, xK_q), kill)
@@ -76,23 +77,23 @@ defaultKeyBindings conf@(XConfig {XMonad.modMask = modm}) = Map.fromList $
     , ((modm, xK_t), withFocused $ windows . W.sink)
 
     -- Toggle status bar gap
-    , ((modm, xK_x), sendMessage Docks.ToggleStruts)
+    , ((modm, xK_x), sendMessage ToggleStruts)
 
     -- Volume keys
-    , ((modm, xF86XK_AudioLowerVolume), lowerVolume)
+    , ((noModMask, xF86XK_AudioLowerVolume), lowerVolume)
     , ((modm, xK_KP_Enter), lowerVolume)
     --
-    , ((modm, xF86XK_AudioRaiseVolume), raiseVolume)
+    , ((noModMask, xF86XK_AudioRaiseVolume), raiseVolume)
     , ((modm, xK_KP_Add), raiseVolume)
 
     -- Multimedia keys
-    , ((modm, xF86XK_AudioPlay), playPause)
+    , ((noModMask, xF86XK_AudioPlay), playPause)
     , ((modm, xK_KP_Multiply), playPause)
     --
-    , ((modm, xF86XK_AudioPrev), prevTrack)
+    , ((noModMask, xF86XK_AudioPrev), prevTrack)
     , ((modm, xK_KP_Divide), prevTrack)
     --
-    , ((modm, xF86XK_AudioNext), nextTrack)
+    , ((noModMask, xF86XK_AudioNext), nextTrack)
     , ((modm, xK_KP_Subtract), nextTrack)
 
     -- Monitor brightness
@@ -193,7 +194,7 @@ myStartupHook = do
 
 -- MAIN
 main :: IO ()
-main = xmonad $ defaultConfig
+main = xmonad $ docks $ ewmh $ defaultConfig
     { modMask = mod4Mask
     , terminal = defaultTerminal
     , focusFollowsMouse = False
